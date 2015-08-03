@@ -1,0 +1,26 @@
+{
+  "comments": [
+    "bluebird: https://github.com/petkaantonov/bluebird/blob/master/API.md"
+  ],
+  "name": "maine-coone",
+  "homepage": "https://github.com/justinsa/maine-coone/",
+  "description": "Client only web interface for accessing US national vehicle recall data",
+  "private": true,
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinsa/maine-coone/"
+  },
+  "dependencies": {
+    "bluebird": "*",
+    "bower": "*",
+    "express": "*",
+    "lodash": "*",
+    "progress": "*",
+    "request": "*"
+  },
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  }
+}

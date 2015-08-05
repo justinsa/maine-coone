@@ -13,9 +13,10 @@
   },
   "dependencies": {
     "bluebird": "*",
-    "bower": "*",
     "express": "*",
     "lodash": "*",
+    "minimist": "*",
+    "mongoose": "*",
     "progress": "*",
     "request": "*"
   },

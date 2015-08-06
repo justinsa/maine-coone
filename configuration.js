@@ -15,12 +15,22 @@ module.exports = function (options) {
       isLocal: function () { return _.isEmpty(process.env.NODE_ENV); },
       isProduction: function () { return process.env.NODE_ENV === 'production'; }
     },
+    services: {
+      pipeline: path.join(__dirname, 'server', 'http-pipeline.service.js')
+    },
     api: {
       path: path.join(__dirname, 'server', 'api.js'),
+      controllers: {
+        diagnostic: path.join(__dirname, 'server', 'diagnostic.controller.js')
+      }
     },
     static: {
       path: path.join(__dirname, 'server', 'static.js'),
-      index: path.join(__dirname, 'client', 'index.html')
+      index: path.join(__dirname, 'client', 'index.html'),
+      root: path.join(__dirname, 'client')
+    },
+    web: {
+      path: path.join(__dirname, 'server', 'web.js')
     },
     data: {
       path: path.join(__dirname, 'database'),
@@ -28,6 +38,12 @@ module.exports = function (options) {
         path.join(__dirname, 'database', 'recall.js')
       ],
       uri: options.data.uri || process.env.MONGOLAB_URI
+    },
+    errors: {
+      options: {
+        showStack: true,
+        dumpExceptions: true
+      }
     }
   };
   return configuration;

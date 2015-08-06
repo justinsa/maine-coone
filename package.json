@@ -13,10 +13,14 @@
   },
   "dependencies": {
     "bluebird": "*",
+    "body-parser": "*",
+    "compression": "*",
+    "errorhandler": "*",
     "express": "*",
     "lodash": "*",
     "minimist": "*",
     "mongoose": "*",
+    "nodejection": "*",
     "progress": "*",
     "request": "*"
   },

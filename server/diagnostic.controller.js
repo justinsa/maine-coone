@@ -20,16 +20,12 @@ module.exports = ['configuration', function (configuration) {
         switch (req.params.type) {
           case 'bower':
             return exec('bower list').then(function (stdout) {
-              // TODO: Determine how to send this back as plain text
-              res.send(stdout);
-              return 0;
+              return [200, 'text', stdout];
             });
             break;
           case 'npm':
             return exec('npm list').then(function (stdout) {
-              // TODO: Determine how to send this back as plain text
-              res.send(stdout);
-              return 0;
+              return [200, 'text', stdout];
             });
             break;
           default:
@@ -39,11 +35,7 @@ module.exports = ['configuration', function (configuration) {
     },
     '/configuration/:key': {
       get: function (req, res) {
-        if (_.has(configuration, req.params.key)) {
-          return configuration[req.params.key];
-        } else {
-          return 404;
-        }
+        return _.has(configuration, req.params.key) ? [200, undefined, configuration[req.params.key]] : 404;
       }
     }
   };

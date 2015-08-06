@@ -31,7 +31,7 @@ module.exports = ['configuration', 'pipeline', function (configuration, pipeline
   });
 
   router.route('/').get(function (req, res) {
-    res.responder(200, { date: Date.now() });
+    res.responder(200, undefined, { date: Date.now() });
   });
 
   router.use(require('errorhandler')(configuration.errors.options));

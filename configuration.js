@@ -20,6 +20,7 @@ module.exports = function (options) {
     },
     api: {
       path: path.join(__dirname, 'server', 'api.js'),
+      methods: ['get'],
       controllers: {
         diagnostic: path.join(__dirname, 'server', 'diagnostic.controller.js')
       }

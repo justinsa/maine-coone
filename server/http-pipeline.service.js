@@ -3,22 +3,23 @@ var _ = require('lodash'),
     Promise = require('bluebird'),
     util = require('util');
 
-module.exports = [function () {
+module.exports = ['configuration', function (configuration) {
   function execute (req, res, next, route) {
     if (_.isFunction(route)) {
       return Promise.method(route)(req, res).then(function (result) {
-        if (_.isUndefined(result)) {
+        if (_.isNumber(result)) {
+          res.responder(result);
+        } else if (_.isUndefined(result) || _.isNull(result)) {
+          // An undefined or null result value either indicates the route handled the response
+          // or if no headers have been sent that the response is a 204.
           if (!res.headersSent) {
             res.responder(204);
           }
-        } else if (_.isNumber(result)) {
-          if (result === 0) {
-            // 0 is a sentinel result to indicate the route sent the response.
-            return;
-          }
-          res.responder(result);
-        } else if (result) {
-          res.responder(200, _.has(result, 'toJSON') ? result.toJSON() : result);
+        } else if (_.isArray(result)) {
+          res.responder.apply(null, result);
+        } else {
+          console.error('Route handler returned a malformed result: ', result);
+          res.responder(500);
         }
       }).catch(function (code) {
         console.error(code);
@@ -33,23 +34,12 @@ module.exports = [function () {
     _.each(_.keys(controller), function (route) {
       var path = util.format('/%s%s', key, (route === '/' ? '' : route));
       console.log('  ', path);
-      router.route(path)
-        .get(function (req, res, next) {
-          console.log('GET: %s on %s', route, key);
-          execute(req, res, next, controller[route].get);
-        })
-        .put(function (req, res) {
-          res.responder(404);
-        })
-        .post(function (req, res) {
-          res.responder(404);
-        })
-        .delete(function (req, res) {
-          res.responder(404);
-        })
-        .head(function (req, res) {
-          res.responder(404);
+      _.each(configuration.api.methods, function (method) {
+        router.route(path)[method](function (req, res, next) {
+          console.log('%s: %s on %s', method, route, key);
+          execute(req, res, next, controller[route][method]);
         });
+      });
     });
   };
 }];

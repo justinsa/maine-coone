@@ -10,7 +10,7 @@ module.exports = function (configuration) {
     var connection = mongoose.connection;
     connection.on('error', console.error.bind(console, '  Connection error: '));
     connection.once('open', function () {
-      console.log('  Connected.');
+      console.log('Connected to: ', configuration.data.uri);
       _.each(configuration.data.schemas, function (schema) {
         require(schema)(mongoose);
       });

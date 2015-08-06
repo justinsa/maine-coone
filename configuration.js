@@ -16,13 +16,15 @@ module.exports = function (options) {
       isProduction: function () { return process.env.NODE_ENV === 'production'; }
     },
     services: {
+      data: path.join(__dirname, 'server', 'data.service.js'),
       pipeline: path.join(__dirname, 'server', 'http-pipeline.service.js')
     },
     api: {
       path: path.join(__dirname, 'server', 'api.js'),
       methods: ['get'],
       controllers: {
-        diagnostic: path.join(__dirname, 'server', 'diagnostic.controller.js')
+        diagnostic: path.join(__dirname, 'server', 'diagnostic.controller.js'),
+        recalls: path.join(__dirname, 'server', 'recalls.controller.js')
       }
     },
     static: {

@@ -15,10 +15,11 @@ module.exports = function (req, res, next) {
       }
 
       if (content) {
-        res.status(code).send(content);
+        res.statusCode = code;
+        res.send(content);
       } else {
         if (code === 200) {
-          console.warning('Status code 200 should have a body. Use 204 instead.');
+          console.warn('Status code 200 should have a body. Use 204 instead.');
         }
         res.sendStatus(code);
       }

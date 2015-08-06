@@ -1,12 +1,13 @@
 'use strict';
 var _ = require('lodash'),
+    argv = require('minimist')(process.argv.slice(2)),
     cluster = require('cluster'),
     nodejection = require('nodejection'),
     Promise = require('bluebird'),
     util = require('util');
 
 console.log('Registering configuration');
-nodejection.register('configuration', require('./configuration.js'));
+nodejection.register('configuration', require('./configuration.js')({ data: { uri: argv.db } }));
 
 Promise.resolve().return(nodejection.inject('configuration')).then(function (configuration) {
   var workerName = cluster.isMaster ? 'Master' : util.format('Peon #%d', cluster.worker.id);

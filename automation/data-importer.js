@@ -9,8 +9,7 @@ var _ = require('lodash'),
     db = require(configuration.data.path)(configuration),
     fs = require('fs'),
     ProgressBar = require('progress'),
-    Promise = require('bluebird'),
-    util = require('util');
+    Promise = require('bluebird');
 
 var dataset = {
   recalls: {
@@ -52,7 +51,7 @@ db.then(function (mongoose) {
     console.log('  Recall data empty. Skipping inserts.')
     return;
   }
-  console.log(util.format('  Recall data found. Performing %d inserts.', dataset.recalls.data.length));
+  console.log('  Recall data found. Performing %d inserts.', dataset.recalls.data.length);
   bar = generateProgressBar(dataset.recalls.data.length);
   return dataset.recalls.data;
 }).each(function (recall) {

@@ -4,7 +4,8 @@ var _ = require('lodash');
 module.exports = ['configuration', function (configuration) {
   return require(configuration.data.path)(configuration).then(function (mongoose) {
     var data = {
-      connection: mongoose
+      connection: mongoose,
+      utils: require(configuration.data.utils.path)()
     };
 
     _.each(mongoose.modelNames(), function (model) {

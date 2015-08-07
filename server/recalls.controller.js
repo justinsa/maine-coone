@@ -3,48 +3,65 @@ var _ = require('lodash'),
     Promise = require('bluebird');
 
 module.exports = ['data', function (data) {
-  var operation = function (query) {
-    return query.count === 'true' ? 'count' : 'find';
+  var filters = function (query) {
+    var where = data.utils.rangeFilter('Year', query.start, query.end);
+    return _.assign(where, data.utils.inFilter('Make', query.makes));
   };
 
-  var filters = function (query) {
-    var start = parseInt(query.start, 10),
-        end = parseInt(query.end, 10),
-        where = {},
-        i, startUndefined, endUndefined;
-
-    start = (_.isNumber(start) && !_.isNaN(start)) ? start : undefined;
-    end = (_.isNumber(end) && !_.isNaN(end)) ? end : undefined;
-    startUndefined = _.isUndefined(start);
-    endUndefined = _.isUndefined(end);
-
-    if (!startUndefined && !endUndefined) {
-      if (start > end) {
-        where.Year = { $gte: end, $lte: start };
-      } else {
-        where.Year = { $gte: start, $lte: end };
-      }
-    } else if (!startUndefined) {
-      where.Year = { $gte: start };
-    } else if (!endUndefined) {
-      where.Year = { $lte: end };
-    }
-
-    return where;
+  var distinct = function (property) {
+    return new Promise(function (resolve, reject) {
+      data.Recall.distinct(property, {}, function (err, items) {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve([200, undefined, items]);
+      });
+    });
   };
 
   return {
     '/': {
       get: function (req) {
         return new Promise(function (resolve, reject) {
-          data.Recall[operation(req.query)](filters(req.query)).exec(function (err, recalls) {
-            if (err) {
-              reject([500, undefined, err]);
-              return;
-            }
-            resolve([200, undefined, _.isNumber(recalls) ? { count: recalls } : recalls]);
-          });
+          var op = data.utils.operation(req.query),
+              pagination = data.utils.pagination(req.query);
+
+          switch (op) {
+            case 'count':
+              data.Recall.count(filters(req.query)).exec(function (err, count) {
+                if (err) {
+                  reject(err);
+                  return;
+                }
+                resolve([200, undefined, { count: count }]);
+              });
+              break;
+            default:
+              var query = data.Recall.find(filters(req.query));
+              if (pagination) {
+                query.skip(pagination.from).limit(pagination.limit);
+              }
+              query.exec(function (err, recalls) {
+                if (err) {
+                  reject(err);
+                  return;
+                }
+                resolve([200, undefined, recalls]);
+              });
+              break;
+          }
         });
+      }
+    },
+    '/years': {
+      get: function () {
+        return distinct('Year');
+      }
+    },
+    '/makes': {
+      get: function () {
+        return distinct('Make');
       }
     }
   };

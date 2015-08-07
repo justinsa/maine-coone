@@ -40,7 +40,10 @@ module.exports = function (options) {
       schemas: [
         path.join(__dirname, 'database', 'recall.js')
       ],
-      uri: options.data.uri || process.env.MONGOLAB_URI
+      uri: options.data.uri || process.env.MONGOLAB_URI,
+      utils: {
+        path: path.join(__dirname, 'database', 'utils.js')
+      }
     },
     errors: {
       options: {

@@ -30,10 +30,6 @@ module.exports = ['configuration', 'pipeline', function (configuration, pipeline
     });
   });
 
-  router.route('/').get(function (req, res) {
-    res.responder(200, undefined, { date: Date.now() });
-  });
-
   router.use(require('errorhandler')(configuration.errors.options));
 
   return Promise.all(promises).then(function () {

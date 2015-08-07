@@ -7,10 +7,6 @@ var _ = require('lodash'),
 module.exports = ['configuration', require('./static.js'), function (configuration, content) {
   var app = express(), promises = [];
 
-  if (configuration.environment.isHeroku()) {
-    app.enable('trust proxy');
-  }
-
   app.use(require('./responder.js'));
   console.log('Loading static content routing...');
   app.use(content);
@@ -18,6 +14,10 @@ module.exports = ['configuration', require('./static.js'), function (configurati
   promises.push(nodejection.inject(require(configuration.api.path)).then(function (api) {
     app.use(api);
   }));
+
+  app.get('/', function(req, res){
+    res.sendFile(configuration.static.index);
+  });
 
   return Promise.all(promises).then(function () {
     app.listen(configuration.environment.port);

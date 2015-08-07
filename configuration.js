@@ -24,7 +24,9 @@ module.exports = function (options) {
       methods: ['get'],
       controllers: {
         diagnostic: path.join(__dirname, 'server', 'diagnostic.controller.js'),
-        recalls: path.join(__dirname, 'server', 'recalls.controller.js')
+        makes: path.join(__dirname, 'server', 'makes.controller.js'),
+        recalls: path.join(__dirname, 'server', 'recalls.controller.js'),
+        years: path.join(__dirname, 'server', 'years.controller.js')
       }
     },
     static: {

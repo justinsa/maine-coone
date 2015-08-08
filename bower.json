@@ -8,7 +8,6 @@
     "angular-route": "*",
     "angular-sanitize": "*",
     "angular-touch": "*",
-    "angular-ui-select": "*",
     "bootstrap": "*",
     "fontawesome": "*",
     "i18next": "*",

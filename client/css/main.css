@@ -5,6 +5,11 @@ html, body {
   font-family: 'Open Sans', helvetica, arial, sans-serif;
 }
 
+header > .container {
+  background-color: #337ab7;
+  color: white;
+  margin-bottom: 1em;
+}
 header h1 {
   font-family: 'Droid Sans', helvetica, arial, sans-serif;
 }
@@ -17,4 +22,20 @@ footer {
 
 .form-control.form-control-narrow {
   width: 80px;
+}
+
+.space-horizontal {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.no-data {
+  color: maroon;
+  position: absolute;
+}
+
+table > tbody > tr > td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

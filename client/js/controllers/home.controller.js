@@ -20,9 +20,21 @@ angular.module('application.controllers')
     };
 
     $scope.actions = {
+      makes: {
+        filter: function (value) {
+          value = _.isEmpty(value) ? '' : value.toUpperCase();
+          return _.filter($scope.results.makes, function (make) {
+            return _.includes(make.toUpperCase(), value);
+          });
+        }
+      },
+
       search: function () {
         $scope.page.current = 1;
-        _.assign($scope.page.options, $scope.controls);
+        _.assign($scope.page.options, _.pick($scope.controls, 'end', 'from', 'limit', 'makes', 'start'));
+        if (_.isString($scope.controls.make) && !_.isEmpty($scope.controls.make)) {
+          data.utils.overwrite($scope.page.options.makes, [$scope.controls.make]);
+        }
 
         data.api.recalls.count($scope.page.options).then(function (total) {
           $scope.page.total = total.count;

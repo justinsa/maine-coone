@@ -10,15 +10,12 @@
           <label for="end" ng-i18next="Action.End"></label>
           <input type="number" class="form-control form-control-narrow" id="end" ng-model="controls.end" ng-i18next="[placeholder]Action.EndPlaceholder">
         </div>
-        <!--div class="form-group">
-          <label for="makes" ng-i18next="Action.Makes"></label>
-          <ui-select class="form-control" id="makes" ng-model="controls.makes">
-            <ui-select-match ng-18next="[placeholder]Action.MakesPlaceholder">{{$select.selected}}</ui-select-match>
-            <ui-select-choices repeat="make in results.makes | filter: $select.search">
-              <div ng-bind="make"></div>
-            </ui-select-choices>
-          </ui-select>
-        </div-->
+        <div class="form-group space-horizontal">
+          <label for="make" ng-i18next="Action.Make"></label>
+          <input type="text" class="form-control" id="make" ng-model="controls.make" typeahead="make for make in actions.makes.filter($viewValue)" typeahead-template-url="makeTypeaheadTemplate.html" typeahead-loading="loadingMakeResults" typeahead-no-results="noMakeResults" ng-i18next="[placeholder]Action.MakePlaceholder">
+          <i ng-show="loadingMakeResults" class="fa fa-icon fa-refresh fa-pulse"></i>
+          <div class="no-data" ng-show="noMakeResults" ng-i18next="[html]Action.NoMakeResults"></div>
+        </div>
         <button class="btn btn-default" ng-i18next="[title]Search" ng-click="actions.search()"><i class="fa fa-lg fa-search"></i></button>
       </form>
     </div>
@@ -29,7 +26,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 text-center">
+    <div class="col-md-10 text-left">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -45,11 +42,11 @@
           </tr>
         </tbody>
         <tbody ng-if="results.recalls">
-          <tr ng-repeat="recall in results.recalls" popover-template="'recall.html'" popover-title="{{recall.Manufacturer}}" popover-trigger="mouseenter">
-            <td>{{recall.Year}}</td>
-            <td>{{recall.Make}}</td>
-            <td>{{recall.Model}}</td>
-            <td>{{recall.Component}}</td>
+          <tr ng-repeat="recall in results.recalls" popover-template="'recall.html'" popover-title="{{recall.Manufacturer}}" popover-trigger="mouseenter" popover-animation="true" popover-placement="right" popover-append-to-body="true">
+            <td class="text-center">{{recall.Year}}</td>
+            <td class="text-left">{{recall.Make}}</td>
+            <td class="text-left">{{recall.Model}}</td>
+            <td class="text-left">{{recall.Component}}</td>
           </tr>
         </tbody>
       </table>
@@ -64,9 +61,15 @@
   </div>
 </div>
 
+<script type="text/ng-template" id="makeTypeaheadTemplate.html">
+  <a>
+    <span ng-bind-html="match.label | typeaheadHighlight:query | trust"></span>
+  </a>
+</script>
+
 <script type="text/ng-template" id="recall.html">
-    <h4 ng-i18next="Recall.Summary"></h4>
-    <p ng-bind-html="recall.Summary | default"></p>
-    <h4 ng-i18next="Recall.Remedy"></h4>
-    <p ng-bind-html="recall.Remedy | default"></p>
+  <h4 ng-i18next="Recall.Summary"></h4>
+  <p ng-bind-html="recall.Summary | default: 'Recall.NoInformationAvailable'"></p>
+  <h4 ng-i18next="Recall.Remedy"></h4>
+  <p ng-bind-html="recall.Remedy | default: 'Recall.NoInformationAvailable'"></p>
 </script>

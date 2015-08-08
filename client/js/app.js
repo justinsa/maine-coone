@@ -10,8 +10,7 @@ var application = angular.module('nhsta', [
   'ngSanitize',
   'ngTouch',
   'restangular',
-  'ui.bootstrap',
-  'ui.select'
+  'ui.bootstrap'
 ]);
 
 application.config(['$i18nextProvider', function ($i18nextProvider) {
@@ -35,7 +34,4 @@ application.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/', { templateUrl: 'partials/home.html', controller: 'HomeController' })
     .otherwise({ redirectTo: '/' });
-}]);
-application.config(['uiSelectConfig', function (uiSelectConfig) {
-  uiSelectConfig.theme = 'bootstrap';
 }]);

@@ -2,8 +2,9 @@
   "Action": {
     "End": "to:",
     "EndPlaceholder": "9999",
-    "Makes": "Makes",
-    "MakesPlaceholder": "Vehicle makes",
+    "Make": "Make:",
+    "MakePlaceholder": "e.g., FORD",
+    "NoMakeResults": "<i class=\"fa fa-icon fa-remove\"></i> <i>No results found.</i>",
     "Search": "Search",
     "Start": "From:",
     "StartPlaceholder": "1949"
@@ -16,6 +17,7 @@
     "Manufacturer": "Manufacturer",
     "Model": "Model",
     "Notes": "Notes",
+    "NoInformationAvailable": "<i>No information available.</i>",
     "Remedy": "Remedy",
     "ReportDate": "ReportDate",
     "Summary": "Summary",

@@ -2,9 +2,9 @@
 
 module.exports = function (mongoose) {
   var recallSchema = mongoose.Schema({
-    Year: Number,
-    Make: String,
-    Model: String,
+    Year: { type: Number, index: true },
+    Make: { type: String, index: true },
+    Model: { type: String, index: true },
     Manufacturer: String,
     Component: String,
     Summary: String,
@@ -14,5 +14,7 @@ module.exports = function (mongoose) {
     NHTSACampaignNumber: String,
     ReportReceivedDate: String
   });
+  recallSchema.set('autoIndex', false);
+  recallSchema.index({ Year: 1, Make: 1, Model: 1 });
   mongoose.model('Recall', recallSchema);
 };

@@ -9,10 +9,10 @@ module.exports = ['data', function (data) {
   };
 
   return {
-    '/': {
+    '/:operation?': {
       get: function (req) {
         return new Promise(function (resolve, reject) {
-          var op = data.utils.operation(req.query),
+          var op = data.utils.operation(req.params),
               pagination = data.utils.pagination(req.query);
 
           switch (op) {

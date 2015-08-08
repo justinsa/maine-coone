@@ -26,7 +26,7 @@ module.exports = ['data', function (data) {
               });
               break;
             default:
-              var query = data.Recall.find(filters(req.query));
+              var query = data.Recall.find(filters(req.query)).sort({ Year: 1, Make: 1, Model: 1 });
               if (pagination) {
                 query.skip(pagination.from).limit(pagination.limit);
               }

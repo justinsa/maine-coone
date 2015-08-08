@@ -16,6 +16,7 @@ angular.module('application.controllers')
       $scope.results.years = years;
       $scope.controls.end = years[0];
       $scope.controls.start = years[years.length - 1];
+      $scope.actions.search();
     });
     data.api.makes.get().then(function (makes) {
       $scope.results.makes = makes;

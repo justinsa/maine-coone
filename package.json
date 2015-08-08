@@ -1,7 +1,4 @@
 {
-  "comments": [
-    "bluebird: https://github.com/petkaantonov/bluebird/blob/master/API.md"
-  ],
   "name": "maine-coone",
   "homepage": "https://github.com/justinsa/maine-coone/",
   "description": "Client only web interface for accessing US national vehicle recall data",
@@ -14,6 +11,7 @@
   "dependencies": {
     "bluebird": "*",
     "body-parser": "*",
+    "bower": "*",
     "compression": "*",
     "errorhandler": "*",
     "express": "*",
@@ -27,5 +25,10 @@
   "engines": {
     "node": "*",
     "npm": "*"
+  },
+  "scripts": {
+    "start": "node ./boot.js",
+    "postinstall": "node ./node_modules/bower/bin/bower install",
+    "postupdate": "node ./node_modules/bower/bin/bower update"
   }
 }

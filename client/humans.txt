@@ -1,0 +1,15 @@
+# humanstxt.org/
+
+/* TEAM */
+Name: Justin W. Saunders
+Twitter: jsaundea
+Location: Sunnyvale, California, USA
+
+/* THANKS */
+Name: N/A
+
+/* SITE */
+Last update: 2015/08/06
+Standards: CSS3, HTML5, JavaScript
+Components: Angular, Node
+Software: Sublime Text 3, GitHub for Windows, PowerShell, Windows 10

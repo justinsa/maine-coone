@@ -1,0 +1,38 @@
+{
+  "Action": {
+    "End": "to:",
+    "EndPlaceholder": "9999",
+    "Makes": "Makes",
+    "MakesPlaceholder": "Vehicle makes",
+    "Search": "Search",
+    "Start": "From:",
+    "StartPlaceholder": "1949"
+  },
+  "Recall": {
+    "Component": "Component",
+    "Consequence": "Consequence",
+    "CampaignNumber": "Campaign #",
+    "Make": "Make",
+    "Manufacturer": "Manufacturer",
+    "Model": "Model",
+    "Notes": "Notes",
+    "Remedy": "Remedy",
+    "ReportDate": "ReportDate",
+    "Summary": "Summary",
+    "Year": "Year"
+  },
+  "Table": {
+    "Column": {
+      "Year": "Year",
+      "Make": "Make",
+      "Manufacturer": "Manufacturer",
+      "Model": "Model",
+      "Component": "Component"
+    },
+    "NoDataAvailable": "<i>No search results found.</i>"
+  },
+  "Site": {
+    "Copyright": "&copy; 2015 Justin Saunders | All Rights Reserved",
+    "Title": "NHSTA Vehicle Recall Data"
+  }
+}

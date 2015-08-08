@@ -1,0 +1,23 @@
+{
+  "name": "maine-coone",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "*",
+    "angular-animate": "*",
+    "angular-bootstrap": "*",
+    "angular-route": "*",
+    "angular-sanitize": "*",
+    "angular-touch": "*",
+    "angular-ui-select": "*",
+    "bootstrap": "*",
+    "fontawesome": "*",
+    "i18next": "*",
+    "jquery": "*",
+    "lodash": "*",
+    "ng-i18next": "*",
+    "restangular": "*"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
+  }
+}

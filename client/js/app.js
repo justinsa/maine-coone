@@ -1,5 +1,5 @@
 'use strict';
-var application = angular.module('nhsta', [
+var application = angular.module('nhtsa', [
   'application.controllers',
   'application.directives',
   'application.filters',

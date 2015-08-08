@@ -9,6 +9,15 @@ angular.module('application.services')
           makes: []
         };
 
+    var merge = function (to, from) {
+      return $.merge(to, from);
+    };
+
+    var overwrite = function (to, from) {
+      to.length = 0;
+      return merge(to, from);
+    };
+
     return {
       api: {
         makes: {
@@ -34,6 +43,10 @@ angular.module('application.services')
             return Restangular.all('years').getList();
           }
         }
+      },
+      utils: {
+        merge: merge,
+        overwrite: overwrite
       }
     };
   }]);

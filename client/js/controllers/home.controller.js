@@ -14,7 +14,9 @@ angular.module('application.controllers')
       total: 0
     };
     $scope.results = {
-      recalls: []
+      makes: [],
+      recalls: [],
+      years: []
     };
 
     $scope.actions = {
@@ -27,8 +29,7 @@ angular.module('application.controllers')
         });
 
         data.api.recalls.get($scope.page.options).then(function (recalls) {
-          $scope.results.recalls.length = 0;
-          $.merge($scope.results.recalls, recalls);
+          data.utils.overwrite($scope.results.recalls, recalls);
         });
       },
 
@@ -36,19 +37,18 @@ angular.module('application.controllers')
         $scope.page.options.from = ($scope.page.current - 1) * $scope.page.options.limit;
 
         data.api.recalls.get($scope.page.options).then(function (recalls) {
-          $scope.results.recalls.length = 0;
-          $.merge($scope.results.recalls, recalls);
+          data.utils.overwrite($scope.results.recalls, recalls);
         });
       }
     };
 
     data.api.years.get().then(function (years) {
-      $scope.results.years = years;
+      data.utils.overwrite($scope.results.years, years);
       $scope.controls.end = years[0];
       $scope.controls.start = years[years.length - 1];
       $scope.actions.search();
     });
     data.api.makes.get().then(function (makes) {
-      $scope.results.makes = makes;
+      data.utils.overwrite($scope.results.makes, makes);
     });
   }]);

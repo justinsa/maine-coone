@@ -28,14 +28,14 @@ Promise.resolve().return(nodejection.inject('configuration')).then(function (con
 
     // Create a worker for each CPU
     for (var i = 0; i < cpuCount; ++i) {
-      cluster.fork().on('message', console);
+      cluster.fork().on('message', console.log);
     }
 
     // Listen for dying workers in production and respawn
     if (configuration.environment.isProduction()) {
       cluster.on('exit', function (worker) {
         console.error('Peon #%d down! Using phoenix down!', worker.id);
-        cluster.fork().on('message', console);
+        cluster.fork().on('message', console.log);
       });
     }
   } else {

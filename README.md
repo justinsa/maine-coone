@@ -1,7 +1,7 @@
 # NHTSA Vehicle Recall Web Service
 Re-invention of the NHTSA web service for viewing vehicle recall data.
 
-Available at: http://maine-coone.herokuapp.com
+Available at: https://maine-coone.herokuapp.com
 
 DOT-NHTSA Web API specifications: http://www.nhtsa.gov/webapi/Default.aspx?Recalls/API/83
 

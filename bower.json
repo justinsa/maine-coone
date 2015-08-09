@@ -14,7 +14,8 @@
     "jquery": "*",
     "lodash": "*",
     "ng-i18next": "*",
-    "restangular": "*"
+    "restangular": "*",
+    "sprintf": "*"
   },
   "resolutions": {
     "angular": "1.4.3"

@@ -9,15 +9,21 @@ header > .container {
   background-color: #337ab7;
   color: white;
   margin-bottom: 1em;
+  min-height: 70px;
 }
 header h1 {
   font-family: 'Droid Sans', helvetica, arial, sans-serif;
 }
 
-footer {
-  color: #adadad;
+footer > .container {
+  color: white;
+  background-color: #337ab7;
+  margin-top: 1em;
+  min-height: 70px;
+}
+footer .copyright {
   font-size: .75em;
-  padding: 1em 0;
+  line-height: 70px;
 }
 
 .form-control.form-control-narrow {

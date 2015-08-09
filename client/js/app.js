@@ -10,6 +10,7 @@ var application = angular.module('nhtsa', [
   'ngSanitize',
   'ngTouch',
   'restangular',
+  'sprintf',
   'ui.bootstrap'
 ]);
 

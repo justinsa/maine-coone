@@ -30,6 +30,10 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <td colspan="2" class="text-left small" ng-bind-html="'Table.Total' | i18next | sprintf: page.total | trust"></td>
+            <td colspan="2" class="text-right small" ng-bind-html="'Table.PerPage' | i18next | sprintf: controls.limit | trust"></td>
+          </tr>
+          <tr>
             <th class="text-center" ng-i18next="Table.Column.Year"></th>
             <th class="text-center" ng-i18next="Table.Column.Make"></th>
             <th class="text-center" ng-i18next="Table.Column.Model"></th>
@@ -70,6 +74,8 @@
 <script type="text/ng-template" id="recall.html">
   <h4 ng-i18next="Recall.Summary"></h4>
   <p ng-bind-html="recall.Summary | default: 'Recall.NoInformationAvailable'"></p>
+  <h4 ng-i18next="Recall.Consequence"></h4>
+  <p ng-bind-html="recall.Consequence | default: 'Recall.NoInformationAvailable'"></p>
   <h4 ng-i18next="Recall.Remedy"></h4>
   <p ng-bind-html="recall.Remedy | default: 'Recall.NoInformationAvailable'"></p>
 </script>

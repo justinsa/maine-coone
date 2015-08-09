@@ -31,7 +31,9 @@
       "Model": "Model",
       "Component": "Component"
     },
-    "NoDataAvailable": "<i>No search results found.</i>"
+    "NoDataAvailable": "<i>No search results found.</i>",
+    "PerPage": "<strong>%d</strong> results per page",
+    "Total": "Total: <strong>%d</strong>"
   },
   "Site": {
     "Copyright": "&copy; 2015 Justin Saunders | All Rights Reserved",

@@ -26,3 +26,10 @@ All you need to get going is:
   ```
 
 The service is then available at ```http://localhost:8080```
+
+To lint or run tests you have the following commands available:
+
+  ```cmd
+  gulp lint
+  gulp test
+  ```

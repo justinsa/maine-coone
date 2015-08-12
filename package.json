@@ -22,6 +22,15 @@
     "progress": "*",
     "request": "*"
   },
+  "devDependencies": {
+    "chai": "*",
+    "glob": "*",
+    "gulp": "*",
+    "gulp-jshint": "*",
+    "gulp-mocha": "*",
+    "proxyquire": "*",
+    "sinon": "*"
+  },
   "engines": {
     "node": "*",
     "npm": "*"

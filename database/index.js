@@ -4,7 +4,7 @@ var _ = require('lodash'),
     Promise = require('bluebird');
 
 module.exports = function (configuration) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     console.log('Attempting connection to: ', configuration.data.uri);
     mongoose.connect(configuration.data.uri);
     var connection = mongoose.connection;
@@ -17,4 +17,4 @@ module.exports = function (configuration) {
       resolve(mongoose);
     });
   });
-}
+};

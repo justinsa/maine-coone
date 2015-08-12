@@ -1,6 +1,5 @@
 'use strict';
-var _ = require('lodash'),
-    express = require('express'),
+var express = require('express'),
     nodejection = require('nodejection'),
     Promise = require('bluebird');
 

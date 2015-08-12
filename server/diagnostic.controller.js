@@ -16,25 +16,23 @@ module.exports = ['configuration', function (configuration) {
       }
     },
     '/versions/:type': {
-      get: function (req, res) {
+      get: function (req) {
         switch (req.params.type) {
           case 'bower':
             return exec('bower list').then(function (stdout) {
               return [200, 'text', stdout];
             });
-            break;
           case 'npm':
             return exec('npm list').then(function (stdout) {
               return [200, 'text', stdout];
             });
-            break;
           default:
             return 404;
         }
       }
     },
     '/configuration/:key': {
-      get: function (req, res) {
+      get: function (req) {
         return _.has(configuration, req.params.key) ? [200, undefined, configuration[req.params.key]] : 404;
       }
     }

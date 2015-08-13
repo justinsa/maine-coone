@@ -14,7 +14,7 @@ gulp.task('js:lint', function () {
 gulp.task('js:test', ['js:lint'], function () {
   process.env.MOCHA_TESTING = true;
   var mocha = require('gulp-mocha');
-  return gulp.src(paths.server.test)
+  return gulp.src(paths.server.test.runner)
     .pipe(mocha({ reporter: 'spec' }))
     .on('end', function() { process.emit('closeConnections'); });
 });

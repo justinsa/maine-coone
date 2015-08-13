@@ -23,8 +23,12 @@ var source = {
     application: []
       .concat(directory.root('*.js'))
       .concat(glob.sync(directory.server.root('*.js'))),
-    test: []
-      .concat(glob.sync(directory.server.test('**/*.js')))
+    test: {
+      all: []
+        .concat(glob.sync(directory.server.test('**/*.js'))),
+      runner: []
+        .concat(glob.sync(directory.server.test('*.js')))
+    },
   }
 }
 
@@ -32,6 +36,6 @@ source.all = []
   .concat(source.client.application)
   .concat(source.database)
   .concat(source.server.application)
-  .concat(source.server.test);
+  .concat(source.server.test.all);
 
 module.exports = source;
